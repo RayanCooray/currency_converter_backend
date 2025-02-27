@@ -9,11 +9,6 @@ app.use(express.json());
 app.use(cors());
 app.use(requestIp.mw());
 
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-
-dotenv.config();
-
 const mongoURI = process.env.MONGO_URI;
 if (!mongoURI) {
   console.error("MONGO_URI is not set!");
@@ -23,8 +18,6 @@ if (!mongoURI) {
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Connection Error:", err));
-
-  
 
 const TransferSchema = new mongoose.Schema({
   ip: String,
